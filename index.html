@@ -52,7 +52,7 @@
       line-height: 18px;
       height: 150px;
       margin-bottom: 40px;
-      width: 100px;
+      width: 120px;
     }
     .legend-key {
       display: inline-block;
@@ -82,8 +82,10 @@
   });
 
 // add legend to your map
-    var layers = ['Commercial land', 'Residential land', 'Institutional land', 'Other'];
-    var colors = ['#bf0808', '#32f145', '#e9f54d', '#000000'];
+
+    var layers = ['Civic', 'Commercial', 'Industrial', 'Recreation', 'Residential', 'Transportation', 'Vacant', 'Other'];
+    var colors = ['#effa1e', '#09f660', '#b09363', '#c231f2', '#f67a0e',  '#a8a3a3', '#f50505', '#000000'];
+
 for (i = 0; i < layers.length; i++) {
       var layer = layers[i];
       var color = colors[i];
@@ -108,20 +110,18 @@ map.on('load', function() {
         // change info window on hover
         map.on('mousemove', function(e) {
           var states = map.queryRenderedFeatures(e.point, {
- //           layers: ['buildings-lu-new'] // get from the mapbox top left layer information
            layers: ['buildings-lu'] // get from the mapbox top left layer information
-
           });
 
           if (states.length > 0) {
             document.getElementById('pd').innerHTML =
-              '<h3><strong> building id:' +
+              '<h3><strong> Land use:' +
               // states[0].properties.fid +
               '</strong></h3><p><strong><em>' +
               states[0].properties.landuse;
           } else {
             document.getElementById('pd').innerHTML =
-              '<p>The building id is: </p>';
+              '<p>The land use is: </p>';
           }
         });
     });
